@@ -1,37 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>JSSample</title>
+    <title>Home sweet home</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script src="main.js"></script>
 </head>
 <body>
+<button onclick="getCurrentAccounBalance('f92c6151-e0a5-4517-98e6-5a7c113b60ff')">clica </button>
 
-<script type="text/javascript">
-    $(function() {
-        var id = 
-            "f92c6151-e0a5-4517-98e6-5a7c113b60ff"
-        ;
-        var bearer ="bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1jNTdkTzZRR1RWQndhTmsifQ.eyJleHAiOjE1MjM3MDE5NjEsIm5iZiI6MTUyMzY5ODM2MSwidmVyIjoiMS4wIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tL2Q1Zjg1NjgyLWY2N2EtNDQ0NC05MzY5LTJjNWVjMWEwZThjZC92Mi4wLyIsInN1YiI6ImY5MmM2MTUxLWUwYTUtNDUxNy05OGU2LTVhN2MxMTNiNjBmZiIsImF1ZCI6IjQwOTU3YjljLTYzYmMtNGFiNC05ZWNiLTY3YjU0M2M4ZTRjYSIsIm5vbmNlIjoiZGVmYXVsdE5vbmNlIiwiaWF0IjoxNTIzNjk4MzYxLCJhdXRoX3RpbWUiOjE1MjM2OTgzNjEsIm9pZCI6ImY5MmM2MTUxLWUwYTUtNDUxNy05OGU2LTVhN2MxMTNiNjBmZiIsIm5hbWUiOiJzYW11ZWwiLCJmYW1pbHlfbmFtZSI6InRlaXhlaXJhIiwiZ2l2ZW5fbmFtZSI6IlNhbXVlbCIsImVtYWlscyI6WyJzYW11ZWx0ZWl4ZWlyYXNAZ21haWwuY29tIl0sInRmcCI6IkIyQ18xX0JsdWVCYW5rU1VTSSJ9.I305fw3epYbkGX20-LWZ8doKQTxxcxpof0llTiUIO9VcYTrVyfAWGWbcH6gKbSyz-MiMhzwxC38UJ_rEgCZAMddm47EvltMTHuhTmtw0hprQ2D3VKhThJsQ05-JzAd1nynsTZJikRYN0Hd49SaIu8plvGBIDL-iirEXTBQPgCpEmAigkRa_O3KQLrARcQV-l9AkTKR5pIXM9UZ6-smdBNevlgba0GSWg3xY98Ft7uVghUKQhcsuj7tfzdKbGZZRTICCab-k5kChP_WP1fgYr4PMAzmtF-B7JgA7lEhL9SruBNTrLxVWyO_yV6QmlfmCGTVVWlC_Zx3kbrb7x2OyYNw";
-        var devKey="d50fdd98d97042b399bc787bbfcdd30d";
-       
-        $.ajax({
-            url: "https://bluebank.azure-api.net/api/v0.7/customers/" + id,beforeSend: function(xhrObj){
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key",devKey);
-                xhrObj.setRequestHeader("Authorization",bearer);
-            },
-            type: "GET",
-        }).done(function(data) {
-            console.log(data);
-            
 
-        })
-          .fail(function(err) {
-             //Didn't get a customers/{id}/accounts response
-             console.log("No response from GET /customers/{id}/accounts");
-             console.dir(err);
-         });
-
-    });
-</script>
 </body>
 </html>
