@@ -1,0 +1,40 @@
+{
+  "name": "save-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.17.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "fusioncharts": "^3.12.2",
+    "highcharts": "^6.1.0",
+    "moment": "^2.20.1",
+    "react": "^16.2.0",
+    "react-cookies": "^0.1.0",
+    "react-datetime": "^2.14.0",
+    "react-dom": "^16.2.0",
+    "react-fusioncharts": "^1.0.5",
+    "react-redux": "^5.0.6",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-slick": "^0.18.1",
+    "react-test-renderer": "^16.2.0",
+    "redux": "^3.7.2",
+    "redux-logger": "^3.0.6",
+    "redux-mock-store": "^1.4.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.2.0",
+    "semantic-ui-css": "^2.2.12",
+    "semantic-ui-react": "^0.77.1"
+  },
+  "devDependencies": {
+    "enzyme-to-json": "^3.3.0",
+    "react-scripts": "1.0.17"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom --collectCoverageFrom=src/**/*js --collectCoverageFrom=!src/index.js --collectCoverageFrom=!src/actions/index.js --collectCoverageFrom=!src/registerServiceWorker.js --collectCoverageFrom=!src/components/Session/login.js",
+    "eject": "react-scripts eject"
+  }
+}
