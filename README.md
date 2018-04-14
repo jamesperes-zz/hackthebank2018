@@ -9,5 +9,5 @@ Antes de entrar no grupo
 cria uma nova transacao de 0.41
 
 depois do grupo
-- exibir numeros de parcipantes no grupo e exebir valor da conta de saving do grupo
+- exibir numeros de parcipantes no grupo e exibir valor da conta de saving do grupo
 - proximos savings manda pra conta do grupo
