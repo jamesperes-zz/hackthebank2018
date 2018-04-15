@@ -8,3 +8,5 @@ http://localhost:8080/bid/7085edd5-eb78-4945-b0bb-1770a24ea8a7/10002362
 
 login
 http://localhost:8080/login?p=B2C_1_BlueBankSUSI
+
+http://localhost:8080/getAccountBalance/a90c07ca-3d60-4aae-b8ff-387d82a9d54a
