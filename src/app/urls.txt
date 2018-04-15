@@ -1,0 +1,5 @@
+get getAccountBalance
+http://localhost:8080/getAccountBalance/353ce94b-e544-4d9f-b7f5-58b663a27c07
+
+get bid
+http://localhost:8080/bid/7085edd5-eb78-4945-b0bb-1770a24ea8a7/10002362

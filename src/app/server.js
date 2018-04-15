@@ -157,8 +157,9 @@ var $;
 var urlBase = "https://bluebank.azure-api.net/api/v0.7";
 var urlPaymentBase = "https://bluebank.azure-api.net/v0.71/api";
 var debug = true;
-
-
+// default value
+var globalAccountNumber = "10002355";
+var globalClientAccountId;
 
 /**
 * group account
@@ -200,8 +201,10 @@ function onError(err){
 }
   
 
-function baseGetCall(url,success,error,callback) {
+function baseGetCall(url,success,error,callback,res) {
     
+
+    console.log(url);
     var html = '<html><body></body></html>';
   
     jsdom.env({
@@ -223,10 +226,9 @@ function baseGetCall(url,success,error,callback) {
                 console.log("*** Response ***");
                 console.log(data);
      
-             success(data,callback);
+             success(data,callback,res);
         })
           .fail(function(err) {
-             //Didn't get a customers/{id}/accounts response
              console.log("No response from "+ urlBase + url);
              console.dir(err);
              error(err);
@@ -244,36 +246,37 @@ process.on('uncaughtException', function (error) {
 
  
 /** Return the account info **/
-function getAccountInfo(accountId,callback){
-    baseGetCall( "/accounts/" + accountId, onGetAccountInfo, onError, callback);
+function getAccountInfo(accountId,callback,res){
+    baseGetCall( "/accounts/" + accountId, onGetAccountInfo, onError, callback,res);
  }
 
  /** account info  callback **/
-function onGetAccountInfo(accountInfo,callback){
+function onGetAccountInfo(accountInfo,callback,res){
     console.log("onGetAccountInfo");
     console.log(accountInfo);
-    callback(accountInfo);
+    callback(accountInfo,res);
 }
 
 /**
  * 
  * @param {*} accountId 
  */
-function startSendSaving(accountId){
-    getAccountInfo(accountId,processSendSaving);
+function startSendSaving(accountId,res){
+    getAccountInfo(accountId,processSendSaving,res);
 }
 /**
  * 
  * @param {accountInfoData} data 
  */
-function processSendSaving(data){
+function processSendSaving(data,res){
     console.log("processSendSaving");
     console.log(data);
     
     if(data != undefined){
         sendFromSavingToGroupAccount(data.id,
-            savingAccount.sortCode,savingAccount.accountNumber,
-            data.accountBalance,"GBP");
+            savingAccount.sortCode,
+            globalAccountNumber,
+            data.accountBalance,"GBP",res);
 
     } 
     else 
@@ -282,7 +285,7 @@ function processSendSaving(data){
 
 
 
-function sendFromSavingToGroupAccount(fromAccountId,sortCode,accountNumber,amount,currency){
+function sendFromSavingToGroupAccount(fromAccountId,sortCode,accountNumber,amount,currency,res){
     console.log("sendFromSavingToGroupAccount");
     
     /**
@@ -307,21 +310,24 @@ function sendFromSavingToGroupAccount(fromAccountId,sortCode,accountNumber,amoun
   
     var body = JSON.stringify(paymentObj);
     var url = "/Payments";
-    console.log(body);
-    console.log(isFunction(doPayment));
-    console.log(isFunction(basePostCall));
-    console.log("call payments");
-
     
-    // TODO PQ NAO TA CHAMANDO
-    basePostCall(url,body,paymentOK,onError);
+    basePostCall(url,body,paymentOK,onError,res);
 
-    console.log("chamou");
 }
 
+/** Return the current balance from an specific account **/
+function getAccountBalance(accountId,res){
+    baseGetCall( "/accounts/" + accountId, onGetAccountBalance, onError,res);
+ }
+ 
+ 
+ /** Balance callback **/
+ function onGetAccountBalance(accountInfo,res){
+   console.log(accountInfo.accountBalance);
+   res.send("{'accountBalance':'"+ accountInfo.accountBalance +"'}");
+}
 
-
-function basePostCall(url,_body,success,error) {
+function basePostCall(url,_body,success,error,res) {
 
     console.log('basePostCall');
     
@@ -339,16 +345,72 @@ function basePostCall(url,_body,success,error) {
 
     request(optionsPost, function (error, response, body) {
         if (!error && response.statusCode == 201) {
-            // Print out the response body
-            console.log(body);
+            console.log("payment created");
+            res.send("Payment created");
         } else {
+            res.send(body);
             onError(error);
         }
     });
 }
 
-app.get('/', function (req, res) {
+function onGetAccountTransaction(transactions,callback,res){
 
+    var dictTransactions = filterTransactions(transactions);
+    var client = dictTransactions[globalClientAccountId];
+    //var myobj = JSON.parse(client+"");
+    var array = Object.values(dictTransactions);
+    array.sort(function(first, second){
+      return first.transactionAmount < second.transactionAmount;
+    });
+    var position = array.indexOf(client);
+    position++;
+    //return array.indexOf(client) + 1;
+    res.send("{'position':'"+ position +"'}");
+}
+
+function filterTransactions(transactions){
+    var dict = {};
+    transactions.results.forEach(function(element) {
+      var myRegexp = /\d{8}/g;
+      var string = element.transactionDescription;
+      var match = myRegexp.exec(string);
+      if(match != null){
+        var userAccount = match[0];
+        if(dict[userAccount] != undefined){
+          var oldBalance = dict[userAccount].transactionAmount
+          var newValue = element.transactionAmount
+          dict[userAccount].transactionAmount = parseFloat(oldBalance) + parseFloat(newValue);
+        }else{
+          dict[userAccount] = element;
+        }
+      }
+    });
+    return dict;
+  }
+
+function getAccountTransactionsBid(accountId,res) {
+    var url = "/accounts/" + accountId + "/transactions";
+    baseGetCall(url,onGetAccountTransaction,onError,"callback",res);
+}
+
+// /bid/7085edd5-eb78-4945-b0bb-1770a24ea8a7/10002342
+// 10002342
+function checkBid(accountId, clientAccountId,res){
+    globalClientAccountId = clientAccountId;
+    getAccountTransactionsBid(accountId,res);
+  }
+
+app.get('/bid/:accountId/:accountNumber', function (req, res) {
+    checkBid(req.params.accountId,req.params.accountNumber,res);
+})
+
+app.get('/getAccountBalance/:accountId', function (req, res) {
+    getAccountBalance(req.params.accountId,res);
+})
+
+
+app.get('/', function (req, res) {
     res.send('Hello World')
 })
 
@@ -362,7 +424,7 @@ app.get('/error', function (req, res) {
 })
 
 app.get('/welcome',  function (req, res) {
-    res.send('welcome')
+    res.send('logged')
 })
 
 function ensureAuthenticated(req, res, next) {
@@ -370,24 +432,24 @@ function ensureAuthenticated(req, res, next) {
     res.redirect('/login');
   };
 
-// 'GET returnURL'
-// `passport.authenticate` will try to authenticate the content returned in
-// query (such as authorization code). If authentication fails, user will be
-// redirected to '/' (home page); otherwise, it passes to the next middleware.
-app.get('/callback',
-  function(req, res, next) {
-    if(res["socket"]["parser"]["incoming"]["body"]["id_token"] != undefined ){
-        globalBearer = res["socket"]["parser"]["incoming"]["body"]["id_token"];
-        res.redirect('/welcome');
-    } else {
-        console.log(res);
-        res.redirect('/error');    
-    }
-  },
-  function(req, res) {
-    log.info('We received a return from AzureAD.');
-    res.redirect('/');
-  });
+// // 'GET returnURL'
+// // `passport.authenticate` will try to authenticate the content returned in
+// // query (such as authorization code). If authentication fails, user will be
+// // redirected to '/' (home page); otherwise, it passes to the next middleware.
+// app.get('/callback',
+//   function(req, res, next) {
+//     if(res["socket"]["parser"]["incoming"]["body"]["id_token"] != undefined ){
+//         globalBearer = res["socket"]["parser"]["incoming"]["body"]["id_token"];
+//         res.redirect('/welcome');
+//     } else {
+//         console.log(res);
+//         res.redirect('/error');    
+//     }
+//   },
+//   function(req, res) {
+//     log.info('We received a return from AzureAD.');
+//     res.redirect('/');
+//   });
 
 // 'POST returnURL'
 // `passport.authenticate` will try to authenticate the content returned in
@@ -430,15 +492,21 @@ app.get('/login',
     res.redirect('/welcome');
 });
 
-app.get('/sendMoney', function (req, res) {
-
-    startSendSaving('3ddc4525-7cb6-4148-af68-690fcb19db7b',res);
+app.get('/sendMoney/:accountId/:accountNumberTo', function (req, res) {
+    globalAccountNumber =  req.params.accountNumberTo;
+    startSendSaving(req.params.accountId,res);
+    //startSendSaving('3ddc4525-7cb6-4148-af68-690fcb19db7b',res);
         // maybe dont need this
-        res.setHeader('Access-Control-Allow-Origin', '*');
-        res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
-        res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
-        res.setHeader('Access-Control-Allow-Credentials', true); // If needed
-        res.send('sent to payment');
+        //res.setHeader('Access-Control-Allow-Origin', '*');
+        //res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE'); // If needed
+        //res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,contenttype'); // If needed
+        //res.setHeader('Access-Control-Allow-Credentials', true); // If needed
+        //res.send('sent to payment');
 })
+
+function paymentOK(data){
+    console.log(data);
+}
+
 
 app.listen(8080)
