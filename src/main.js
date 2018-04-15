@@ -2,13 +2,16 @@
 // never do this at home
 
 function getDevKey(){
-        var devKey="d50fdd98d97042b399bc787bbfcdd30d";
+        var devKey="ef5b4bba1c104b7598075bc936746a88";
+        //"d50fdd98d97042b399bc787bbfcdd30d";
+
+
     return devKey;
 }
 
 function getBearer(){
 
-    var bearer = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1jNTdkTzZRR1RWQndhTmsifQ.eyJleHAiOjE1MjM3MjYyMDAsIm5iZiI6MTUyMzcyMjYwMCwidmVyIjoiMS4wIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tL2Q1Zjg1NjgyLWY2N2EtNDQ0NC05MzY5LTJjNWVjMWEwZThjZC92Mi4wLyIsInN1YiI6ImY5MmM2MTUxLWUwYTUtNDUxNy05OGU2LTVhN2MxMTNiNjBmZiIsImF1ZCI6IjQwOTU3YjljLTYzYmMtNGFiNC05ZWNiLTY3YjU0M2M4ZTRjYSIsIm5vbmNlIjoiZGVmYXVsdE5vbmNlIiwiaWF0IjoxNTIzNzIyNjAwLCJhdXRoX3RpbWUiOjE1MjM3MjI2MDAsIm9pZCI6ImY5MmM2MTUxLWUwYTUtNDUxNy05OGU2LTVhN2MxMTNiNjBmZiIsIm5hbWUiOiJzYW11ZWwiLCJmYW1pbHlfbmFtZSI6InRlaXhlaXJhIiwiZ2l2ZW5fbmFtZSI6IlNhbXVlbCIsImVtYWlscyI6WyJzYW11ZWx0ZWl4ZWlyYXNAZ21haWwuY29tIl0sInRmcCI6IkIyQ18xX0JsdWVCYW5rU1VTSSJ9.HXcyiIfp0rHAblz01J82FHhoPO7_Ul3hvn9gSwavP6rHOAMluNVOSPJpf9oMYyI8_Is4JZL2TQz1tBFZhlC6BzBTJ0NU53cG26GaEoPnDHT4zSJgWkoWzwsfgCRlGxi1idw_KFBnkbn-lGFKJlke7kqEt-Ozxl5TY2tKgO4ZpNgyZPIDXsY9mMuAvGleiIUJ1ZSoSUnw8Rr0QH93ihfsJUYlYm509L-uJnu-AvMe8SyoogG6_HvLz2-yF8gEiQ_5UufrWOCcdAMV7vyEFGhkA03AJEhzuO45EcwwMFPa6wsbEgx49y8FaZwHoF5MwujdfhiTp_pkPZetSz8Tvk08iw";
+    var bearer = "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6Ilg1ZVhrNHh5b2pORnVtMWtsMll0djhkbE5QNC1jNTdkTzZRR1RWQndhTmsifQ.eyJleHAiOjE1MjM3OTEyMDAsIm5iZiI6MTUyMzc4NzYwMCwidmVyIjoiMS4wIiwiaXNzIjoiaHR0cHM6Ly9sb2dpbi5taWNyb3NvZnRvbmxpbmUuY29tL2Q1Zjg1NjgyLWY2N2EtNDQ0NC05MzY5LTJjNWVjMWEwZThjZC92Mi4wLyIsInN1YiI6ImMwZDgxMjdiLThmNTQtNGU0OC1iNjQxLTVkYjQ0NGQ5MDQ0YiIsImF1ZCI6IjQwOTU3YjljLTYzYmMtNGFiNC05ZWNiLTY3YjU0M2M4ZTRjYSIsIm5vbmNlIjoiZGVmYXVsdE5vbmNlIiwiaWF0IjoxNTIzNzg3NjAwLCJhdXRoX3RpbWUiOjE1MjM3ODc2MDAsIm9pZCI6ImMwZDgxMjdiLThmNTQtNGU0OC1iNjQxLTVkYjQ0NGQ5MDQ0YiIsIm5hbWUiOiJSYWZhZWwgU2FudGlhZ28iLCJmYW1pbHlfbmFtZSI6IlNhbnRpYWdvIiwiZ2l2ZW5fbmFtZSI6IlJhZmFlbCIsImVtYWlscyI6WyJybXhzYW50aWFnb0BnbWFpbC5jb20iXSwidGZwIjoiQjJDXzFfQmx1ZUJhbmtTVVNJIn0.qdA7ewkKVASyL4OvAiHAQH2mFUqKsbu8IqRSxQOTTA51WUCMHPBt5ZOJmTJfybEEnf-74xeh3ou_JqHIe4r1UtJWXO-oKhNMiMUx8PyU6ICHFAHTDGcAm0ppBsqKH6cRvz_LR2ERa1bgkgLt8z1BltPeODiR9ZbuuNb9T_vxBxvyzhM2yE-dbGdVKLT2G8ARjqWPpgZCT1fhldjJF6yVF-bFiPaehstWYh0S9ot1PhNdoo68LbsOIKJ7QrLljMfNcblZaIq_zwoTqaCe5yoTGdb6i76D5TMJbkGUiyws0-mSOd9gAaZekPOuhVE1p4_LgW3iPn1j8m7CwT64xbtLEw";
     return bearer;
 }
 
@@ -21,7 +24,7 @@ var debug = true;
 
 /**
  * group account
- * 
+ *
  * Account Id 7085edd5-eb78-4945-b0bb-1770a24ea8a7
     Account Type savings
     Sort Code 839999
@@ -29,13 +32,13 @@ var debug = true;
     Balance 100
     Account Friendly name group account - 001
     Linked Customer id f92c6151-e0a5-4517-98e6-5a7c113b60ff
- * 
- * 
+ *
+ *
  */
 
  /**
   *  saving account
-  * 
+  *
   * Account Id a90c07ca-3d60-4aae-b8ff-387d82a9d54a
     Account Type savings
     Sort Code 839999
@@ -46,7 +49,7 @@ var debug = true;
   */
 
 var savingAccount = {
-    accountId:"a90c07ca-3d60-4aae-b8ff-387d82a9d54a", 
+    accountId:"a90c07ca-3d60-4aae-b8ff-387d82a9d54a",
     sortCode:"839999",
     accountNumber:"10002355"
 };
@@ -140,9 +143,7 @@ function getAccountBalance(accountId){
 /** Balance callback **/
 function onGetAccountBalance(accountInfo){
   console.log(accountInfo.accountBalance);
- 
   return accountInfo.accountBalance;
-
 }
 
 /** Return the account info **/
@@ -154,13 +155,104 @@ function getAccountInfo(accountId,callback){
 function onGetAccountInfo(accountInfo,callback){
 
     console.log(accountInfo);
-  
+
     if(callback != undefined)
       callback(accountInfo);
     else
       return accountInfo;
-  
+
 }
+
+function checkData(callback, data){
+  if(callback != undefined){
+    console.log("checkData() - calling callback");
+    callback(data);
+  }else{
+    console.log("checkData() - returning data");
+    return data;
+  }
+}
+
+function getAccountTransactions(accountId){
+   baseGetCall( "/accounts/" + accountId + "/transactions", onGetTransactions, onError);
+}
+
+function onGetTransactions(transactions){
+  return checkData(undefined, transactions);
+}
+
+
+
+function getAccountTransactions(accountId) {
+  return new Promise(function (resolve, reject) {
+    $.ajax({
+         url: urlBase + "/accounts/" + accountId + "/transactions",
+         beforeSend: function(xhrObj){
+             xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key",getDevKey());
+             xhrObj.setRequestHeader("Authorization",getBearer());
+         },
+         type: "GET",
+    }).done(function(data) {
+         if(debug)
+             console.log("*** Response ***");
+             console.log(data);
+
+          resolve(data);
+     })
+       .fail(function(err) {
+          //Didn't get a customers/{id}/accounts response
+          //console.log("No response from "+ urlBase + url);
+          console.error(err);
+          reject(err);
+      });
+  });
+}
+
+function checkBid(accountId, clientAccountId){
+  getAccountTransactions(accountId)
+  .then(function(transactions) {
+    console.log('Success:');
+    console.log(transactons);
+
+    var dictTransactions = filterTransactions(transactions);
+    var client = dictTransactions[clientAccountId];
+
+    var array = $.map(dictTransactions, function(value, index) {
+      return [value];
+    });
+
+    array.sort(function(first, second){
+      return first.transactionAmount < second.transactionAmount;
+    });
+
+    return array.indexOf(client);
+  })
+  .catch(function(error) {
+    console.log('Error: ' + error);
+  })
+}
+
+function filterTransactions(transactions){
+  var dict = {};
+  transactions.results.forEach(function(element) {
+    var myRegexp = /\d{8}/g;
+    var string = element.transactionDescription;
+    var match = myRegexp.exec(string);
+    if(match != null){
+      var userAccount = match[0];
+      if(dict[userAccount] != undefined){
+        var oldBalance = dict[userAccount].transactionAmount
+        var newValue = element.transactionAmount
+        dict[userAccount].transactionAmount = parseFloat(oldBalance) + parseFloat(newValue);
+      }else{
+        dict[userAccount] = element;
+      }
+    }
+  });
+  return dict;
+}
+
+
 
 /**
  This last transaction to try do the new rounding transaction
@@ -191,8 +283,8 @@ function createPaymentComplement(data){
 
         if(debug)
             console.log(element[0]);
-        // last transacton 
-        
+        // last transacton
+
     }
 
 
@@ -201,27 +293,27 @@ function createPaymentComplement(data){
 
 
 /**
- * 
- * @param {*} accountId 
+ *
+ * @param {*} accountId
  */
 function startSendSaving(accountId){
     getAccountInfo(accountId,processSendSaving);
 }
 /**
- * 
- * @param {accountInfoData} data 
+ *
+ * @param {accountInfoData} data
  */
 function processSendSaving(data){
 
     console.log(data);
-    
+
     if(data != undefined){
         sendFromSavingToGroupAccount(data.id,
             savingAccount.sortCode,savingAccount.accountNumber,
             data.accountBalance,"EUR");
 
-    } 
-    else 
+    }
+    else
       console.log("error processSendSaving");
 }
 
@@ -238,7 +330,7 @@ function sendFromSavingToGroupAccount(fromAccountId,sortCode,accountNumber,amoun
     */
 
     var paymentObj = {
-        paymentType:"XFR", 
+        paymentType:"XFR",
         fromAccountId:fromAccountId,
         toSortCode:sortCode,
         toAccountNumber:accountNumber,
@@ -246,7 +338,7 @@ function sendFromSavingToGroupAccount(fromAccountId,sortCode,accountNumber,amoun
         paymentAmount:amount,
         paymentCurrency:currency
     };
-  
+
     var body = JSON.stringify(paymentObj);
     var url = "/Payments";
     basePostCall(url,body,paymentOK,onError);
@@ -261,5 +353,3 @@ function paymentOK(data){
 function returnDataFunction(data){
     console.log(data);
 }
-
-
